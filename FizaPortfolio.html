@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fiza Bano — Portfolio</title>
+  <style>
+    :root {
+      --bg: #f7f6f2;
+      --ink: #202724;
+      --muted: #737a73;
+      --green: #365d49;
+      --soft: #e8ece3;
+      --line: #e4e3dc;
+      --serif: Georgia, "Times New Roman", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.65 Arial, Helvetica, sans-serif;
+    }
+
+    .wrap { width: min(1050px, calc(100% - 44px)); margin: auto; }
+    a { color: inherit; }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo {
+      text-decoration: none;
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: bold;
+      letter-spacing: -.06em;
+    }
+
+    .navlinks { display: flex; gap: 28px; }
+    .navlinks a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .navlinks a:hover { color: var(--green); }
+
+    .hero {
+      padding: 88px 0 96px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 56px;
+      align-items: center;
+    }
+
+    .kicker {
+      font-size: .75rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font: clamp(3.5rem, 8vw, 6.5rem)/.98 var(--serif);
+      letter-spacing: -.07em;
+      margin: 20px 0;
+    }
+
+    .hero h1 em { font-weight: 400; color: var(--green); }
+
+    .intro {
+      color: #626963;
+      max-width: 580px;
+      font-size: 1.08rem;
+    }
+
+    .buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 30px; }
+
+    .button {
+      display: inline-block;
+      border: 1px solid var(--green);
+      border-radius: 3px;
+      padding: 11px 18px;
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: bold;
+      color: white;
+      background: var(--green);
+      transition: .2s;
+    }
+
+    .button:hover { background: #294735; }
+    .button.outline { color: var(--green); background: transparent; }
+    .button.outline:hover { background: var(--soft); }
+
+    .portrait {
+      height: 390px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: #e9ede4;
+      overflow: hidden;
+    }
+
+    .portrait::before,
+    .portrait::after {
+      content: "";
+      position: absolute;
+      border: 1px solid #cbd4c7;
+      border-radius: 50%;
+      width: 300px;
+      height: 300px;
+    }
+
+    .portrait::after { width: 225px; height: 225px; }
+
+    .initials {
+      position: relative;
+      z-index: 1;
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green);
+      color: white;
+      font: 3.5rem var(--serif);
+      letter-spacing: -.08em;
+    }
+
+    .portrait-note {
+      position: absolute;
+      bottom: 18px;
+      left: 20px;
+      color: var(--green);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    section { padding: 72px 0; border-top: 1px solid var(--line); }
+
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+      margin-bottom: 30px;
+    }
+
+    .heading h2 {
+      font: 2.5rem/1.1 var(--serif);
+      letter-spacing: -.04em;
+      margin: 0;
+    }
+
+    .heading p { margin: 0; color: var(--muted); font-size: .93rem; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+    }
+
+    .about-grid p { color: #646b65; margin: 0; }
+    .label {
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .72rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .about-grid h3 { font: 1.45rem var(--serif); margin: 0 0 10px; }
+
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .skill-group { margin-bottom: 24px; }
+    .skill-group h3 { font-size: .9rem; margin: 0 0 12px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      border: 1px solid #d9ddd5;
+      background: transparent;
+      padding: 7px 11px;
+      font-size: .84rem;
+      color: #4b554d;
+    }
+
+    .progress {
+      padding: 22px;
+      background: var(--soft);
+      border-left: 3px solid var(--green);
+    }
+
+    .progress b { font: 1.3rem var(--serif); display: block; margin-bottom: 5px; }
+    .progress span { font-size: .9rem; color: #626b62; }
+
+    .project {
+      display: grid;
+      grid-template-columns: 70px 1fr auto;
+      align-items: center;
+      gap: 22px;
+      padding: 24px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .project-icon {
+      width: 58px;
+      height: 58px;
+      background: var(--soft);
+      display: grid;
+      place-items: center;
+      color: var(--green);
+      font: 1.5rem var(--serif);
+    }
+
+    .project h3 { font: 1.35rem var(--serif); margin: 0 0 4px; }
+    .project p { margin: 0; color: var(--muted); font-size: .92rem; }
+
+    .status {
+      font-size: .75rem;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .contactbox {
+      background: #263b30;
+      color: #f7f6f2;
+      padding: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .contactbox h2 { font: 2.2rem var(--serif); margin: 0 0 6px; }
+    .contactbox p { color: #d0d8d0; margin: 0; }
+    .contactbox .button { background: #f7f6f2; color: #263b30; border-color: #f7f6f2; }
+    .contactbox .button:hover { background: #e1e8df; }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 25px 0 32px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    @media (max-width: 700px) {
+      .nav { height: auto; padding: 18px 0; align-items: flex-start; }
+      .navlinks { gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+      .navlinks a { font-size: .82rem; }
+      .hero { grid-template-columns: 1fr; padding: 58px 0 65px; gap: 32px; }
+      .portrait { height: 280px; }
+      .about-grid, .skills-layout { grid-template-columns: 1fr; gap: 28px; }
+      .heading { display: block; }
+      .heading p { margin-top: 7px; }
+      .project { grid-template-columns: 55px 1fr; }
+      .status { grid-column: 2; }
+      .contactbox { align-items: flex-start; flex-direction: column; padding: 28px; }
+      .footer { gap: 8px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="wrap nav">
+    <a class="logo" href="#home">FB.</a>
+    <nav class="navlinks" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="kicker">Botany student · Aspiring technology professional</div>
+        <h1>Hello, I'm<br><em>Fiza Bano.</em></h1>
+        <p class="intro">
+          I’m pursuing a B.Sc. in Botany and learning coding alongside my studies.
+          I’m curious about how technology works and building practical skills
+          for a future career in software.
+        </p>
+        <div class="buttons">
+          <a class="button" href="#about">A little about me</a>
+          <a class="button outline"
+             href="https://www.linkedin.com/in/fiza-bano-b39553443"
+             target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        </div>
+      </div>
+
+      <div class="portrait" aria-label="Fiza Bano initials">
+        <div class="initials">FB</div>
+        <span class="portrait-note">Learning · Building · Growing</span>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="wrap">
+        <div class="heading">
+          <h2>About me</h2>
+          <p>Science background, technology in progress.</p>
+        </div>
+        <div class="about-grid">
+          <article>
+            <div class="label">01 / Education</div>
+            <h3>B.Sc. Botany</h3>
+            <p>
+              I’m currently in college studying Botany. My science studies have
+              encouraged me to stay curious, ask questions, and keep learning.
+            </p>
+          </article>
+          <article>
+            <div class="label">02 / Current journey</div>
+            <h3>Learning to code</h3>
+            <p>
+              Alongside college, I’m studying programming and digital tools.
+              My goal is to grow into a software role and work at Microsoft.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="wrap">
+        <div class="heading">
+          <h2>What I’m learning</h2>
+          <p>Skills grow with steady practice.</p>
+        </div>
+        <div class="skills-layout">
+          <div>
+            <div class="skill-group">
+              <h3>Programming &amp; data</h3>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">SQL</span>
+                <span class="tag">DSA</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <h3>Productivity tools</h3>
+              <div class="tags">
+                <span class="tag">Advanced Excel</span>
+                <span class="tag">MS Word</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress">
+            <b>NIELIT O Level</b>
+            <span>Two papers completed · Two papers remaining</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="wrap">
+        <div class="heading">
+          <h2>Selected work</h2>
+          <p>I’ll share projects here as I build them.</p>
+        </div>
+        <article class="project">
+          <div class="project-icon">✳</div>
+          <div>
+            <h3>Project details coming soon</h3>
+            <p>My project is in progress. I’ll add its name, details, and code link here.</p>
+          </div>
+          <span class="status">In progress</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="contactbox">
+          <div>
+            <h2>Let’s connect.</h2>
+            <p>Follow my learning journey on LinkedIn.</p>
+          </div>
+          <a class="button"
+             href="https://www.linkedin.com/in/fiza-bano-b39553443"
+             target="_blank" rel="noreferrer">View LinkedIn profile ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <span>© 2026 Fiza Bano</span>
+    <span>Made with curiosity.</span>
+  </footer>
+
+</body>
+</html>
